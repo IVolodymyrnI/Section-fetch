@@ -15,7 +15,7 @@ import { onAuthorizationUser } from './auth.js';
 import { writeUserData } from './setDatabase';
 
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 
 const refs = {

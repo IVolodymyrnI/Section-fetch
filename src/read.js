@@ -37,7 +37,6 @@ if (onGetCookie('user')) {
   if (load('readCards')) {
     renderCards(load('readCards'));
   }
-  isEmptyPage();
   findFavoriteCards(refs.readPage);
 }
 
@@ -142,7 +141,7 @@ function renderCardsTemplate(array) {
     const titleArrayRef = accordionByDate.querySelectorAll('.accordion__title');
     ListenAllTitleClick(titleArrayRef);
 
-    refs.readPage.appendChild(accordionByDate);
+    isEmptyPage(content);
   }
 }
 
@@ -154,7 +153,6 @@ function renderCardsDatabase(userId) {
         const cardsObject = snapshot.val();
         const cardsArray = Object.values(cardsObject).flat();
         renderCards(cardsArray);
-        isEmptyPage();
         findFavoriteCards(refs.readPage);
       } else {
         console.log('No data available');
@@ -187,14 +185,13 @@ function cardsByDate(array) {
   }, {});
 }
 
-function isEmptyPage() {
-  const content = document.querySelector('.accordion__content');
-
-  if (!content) {
-    refs.emptyPage.classList.add('is-show');
-    refs.readPage.classList.remove('have-read-articles');
+function isEmptyPage(newsList) {
+  if (newsList.hasChildNodes()) {
+    refs.readPage.appendChild(accordionByDate);
+    refs.readPage.classList.add('is-favorite');
   } else {
-    refs.readPage.classList.add('have-read-articles');
+    refs.emptyPage.classList.add('is-show');
+    refs.readPage.classList.remove('is-favorite');
   }
 }
 

@@ -5,18 +5,19 @@ import { onGetCookie } from "./dataBase/getCookie"
 import { updateUserCards } from "./dataBase/setDatabase"
 import { getDatabase, ref, child, get } from 'firebase/database';
 import { async } from "@firebase/util";
+import { app } from "./dataBase/register";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCAzOEobkX7zjzKcWCZNu8dhUnsurUUSAw",
-  authDomain: "news-goit-1.firebaseapp.com",
-  databaseURL: "https://news-goit-1-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "news-goit-1",
-  storageBucket: "news-goit-1.appspot.com",
-  messagingSenderId: "618434101899",
-  appId: "1:618434101899:web:58e5277fd4ec3d55f6ca8e",
-  measurementId: "G-7YDFYWJH4S"
-};
-const app = initializeApp(firebaseConfig);
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCAzOEobkX7zjzKcWCZNu8dhUnsurUUSAw",
+//   authDomain: "news-goit-1.firebaseapp.com",
+//   databaseURL: "https://news-goit-1-default-rtdb.europe-west1.firebasedatabase.app",
+//   projectId: "news-goit-1",
+//   storageBucket: "news-goit-1.appspot.com",
+//   messagingSenderId: "618434101899",
+//   appId: "1:618434101899:web:58e5277fd4ec3d55f6ca8e",
+//   measurementId: "G-7YDFYWJH4S"
+// };
+// const app = initializeApp(firebaseConfig);
 
 
 const STORAGE_THEME = "theme";
@@ -104,7 +105,7 @@ function changeThemeData(userId) {
         updateUserCards(onGetCookie('user'), {STORAGE_THEME: "dark"});
     }
    else  {
-    
+
     updateUserCards(onGetCookie('user'), {STORAGE_THEME: null});
     body.classList.remove('themeDark');
 
